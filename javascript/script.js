@@ -25,16 +25,15 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-// Safari/iPhone — usa touchend que é mais confiável no Safari
-document.addEventListener('touchend', (e) => {
+// Pointer events cobre mouse, touch e caneta em um único listener.
+// Como as imagens ganharam pointer-events:none no CSS, o toque
+// "atravessa" elas e cai direto aqui, evitando o bug do iOS de
+// tratar o toque em cima de uma <img> como gesto de salvar imagem.
+gameBoard.addEventListener('pointerdown', (e) => {
+  if (e.target.closest('.btn-reiniciar')) return; // não pula ao clicar em reiniciar
   e.preventDefault();
   pular();
 }, { passive: false });
-
-// Fallback clique
-document.addEventListener('click', () => {
-  pular();
-});
 
 // Colisão
 setInterval(() => {
@@ -43,11 +42,11 @@ setInterval(() => {
   const gokuRect = goku.getBoundingClientRect();
   const pipeRect = pipe.getBoundingClientRect();
 
-  const margem = 30;
+  const margem = 12; // margem de tolerância simétrica (antes estava "comendo" toda a hitbox)
   const colidiu =
-    gokuRect.right - margem > pipeRect.left &&
-    gokuRect.left + margem < pipeRect.right &&
-    gokuRect.bottom - margem > pipeRect.top;
+    gokuRect.right - margem > pipeRect.left + margem &&
+    gokuRect.left + margem < pipeRect.right - margem &&
+    gokuRect.bottom - margem > pipeRect.top + margem;
 
   if (colidiu) {
     gameOver = true;
