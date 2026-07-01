@@ -25,15 +25,19 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-// Pointer events cobre mouse, touch e caneta em um único listener.
-// Como as imagens ganharam pointer-events:none no CSS, o toque
-// "atravessa" elas e cai direto aqui, evitando o bug do iOS de
-// tratar o toque em cima de uma <img> como gesto de salvar imagem.
-gameBoard.addEventListener('pointerdown', (e) => {
-  if (e.target.closest('.btn-reiniciar')) return; // não pula ao clicar em reiniciar
+// Toque (celular) — escuta direto no game-board, com touchstart
+// (dispara assim que o dedo encosta, sem depender de "soltar" o toque)
+gameBoard.addEventListener('touchstart', (e) => {
+  if (e.target.closest('.btn-reiniciar')) return; // não pula ao tocar em reiniciar
   e.preventDefault();
   pular();
 }, { passive: false });
+
+// Clique (PC e fallback mobile)
+gameBoard.addEventListener('click', (e) => {
+  if (e.target.closest('.btn-reiniciar')) return;
+  pular();
+});
 
 // Colisão
 setInterval(() => {
