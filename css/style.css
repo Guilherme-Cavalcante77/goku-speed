@@ -1,1 +1,78 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+.game-board {
+    width: 100%;
+    height: 700px;
+    border: 1px solid #333;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    background-image: url('../images/serpente.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.nuvemdbz {
+    position: absolute;
+    bottom: 0;
+    width: 35px;
+    height: 55px;
+    object-fit: cover;
+    object-position: top;
+    animation: pipe-animation 1.0s infinite linear;
+}
+
+.goku {
+    width: 100px; /* um pouco menor */
+    position: absolute;
+    bottom: 0;
+    left: 50px;
+}
+
+.gokugt {
+    display: none;
+    position: absolute;
+    width: 200px;
+}
+
+.btn-reiniciar {
+    display: none;
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #c9a0dc;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    padding: 14px 32px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.btn-reiniciar:hover {
+    background-color: #b57bee;
+}
+
+.jump {
+    animation: jump 500ms ease-in-out;
+}
+
+@keyframes pipe-animation {
+    from { right: -45px; }
+    to   { right: 100%; }
+}
+
+@keyframes jump {
+    0%   { bottom: 0; }
+    50%  { bottom: 140px; }
+    100% { bottom: 0; }
+}
