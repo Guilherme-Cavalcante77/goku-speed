@@ -58,7 +58,7 @@ html, body {
     height: 55px;
     object-fit: cover;
     object-position: top;
-    animation: nuvem-animation 1.0s infinite linear;
+    animation: nuvem-animation 2.2s infinite linear;
 }
 
 .goku {
@@ -120,7 +120,27 @@ html, body {
 }
 
 @keyframes impacto {
-    0%   { transform: scale(0.4); opacity: 0; }
-    60%  { transform: scale(1.15); opacity: 1; }
-    100% { transform: scale(1); opacity: 1; }
+    0%   { transform: scale(0.4) rotate(0deg); opacity: 0; }
+    40%  { transform: scale(1.2) rotate(-6deg); opacity: 1; }
+    60%  { transform: scale(1.05) rotate(4deg); }
+    80%  { transform: scale(1.1) rotate(-2deg); }
+    100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+.flash {
+    position: absolute;
+    inset: 0;
+    background: #fff;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 20;
+}
+
+.flash.active {
+    animation: flash-hit 250ms ease-out;
+}
+
+@keyframes flash-hit {
+    0%   { opacity: 0.85; }
+    100% { opacity: 0; }
 }
