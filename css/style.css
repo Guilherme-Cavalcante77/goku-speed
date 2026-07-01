@@ -21,7 +21,7 @@ html, body {
     overflow: hidden;
     background-image: url('../images/serpente.png');
     background-size: cover;
-    background-position: center;
+    background-position: bottom center; /* ancora o chão embaixo e corta o excesso de céu do topo */
     background-repeat: no-repeat;
     /* Evita que o Safari bloqueie eventos de toque */
     touch-action: none;
@@ -72,6 +72,11 @@ html, body {
     width: 200px;
 }
 
+.gokugt.show {
+    display: block;
+    animation: impacto 350ms ease-out;
+}
+
 .btn-reiniciar {
     display: none;
     position: absolute;
@@ -109,4 +114,10 @@ html, body {
     0%   { bottom: 0; }
     50%  { bottom: 140px; }
     100% { bottom: 0; }
+}
+
+@keyframes impacto {
+    0%   { transform: scale(0.4); opacity: 0; }
+    60%  { transform: scale(1.15); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
 }
