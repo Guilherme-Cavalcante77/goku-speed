@@ -1,6 +1,7 @@
 const goku = document.querySelector('.goku');
 const nuvem = document.querySelector('.nuvemdbz');
 const gameOverImg = document.querySelector('.gokugt');
+const flash = document.querySelector('.flash');
 const btnReiniciar = document.querySelector('.btn-reiniciar');
 const gameBoard = document.querySelector('.game-board');
 
@@ -59,6 +60,7 @@ setInterval(() => {
     const boardRect = gameBoard.getBoundingClientRect();
     goku.style.display = 'none';
     gameOverImg.classList.add('show');
+    flash.classList.add('active');
     gameOverImg.style.left = (gokuRect.left - boardRect.left) + 'px';
     gameOverImg.style.bottom = (boardRect.bottom - gokuRect.bottom) + 'px';
     gameOverImg.style.transform = 'none';
