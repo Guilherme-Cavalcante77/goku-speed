@@ -58,7 +58,7 @@ setInterval(() => {
 
     const boardRect = gameBoard.getBoundingClientRect();
     goku.style.display = 'none';
-    gameOverImg.style.display = 'block';
+    gameOverImg.classList.add('show');
     gameOverImg.style.left = (gokuRect.left - boardRect.left) + 'px';
     gameOverImg.style.bottom = (boardRect.bottom - gokuRect.bottom) + 'px';
     gameOverImg.style.transform = 'none';
