@@ -1,6 +1,6 @@
 const goku = document.querySelector('.goku');
-const pipe = document.querySelector('.nuvemdbz');
-const gameOverImg = document.querySelector('.gokugt');
+const nuvemdbz = document.querySelector('.nuvemdbz');
+const gokugt = document.querySelector('.gokugt');
 const btnReiniciar = document.querySelector('.btn-reiniciar');
 const gameBoard = document.querySelector('.game-board');
 
@@ -44,7 +44,7 @@ setInterval(() => {
   if (gameOver) return;
 
   const gokuRect = goku.getBoundingClientRect();
-  const pipeRect = pipe.getBoundingClientRect();
+  const nuvemdbzRect = nuvem.getBoundingClientRect();
 
   const margem = 12; // margem de tolerância simétrica (antes estava "comendo" toda a hitbox)
   const colidiu =
