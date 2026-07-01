@@ -1,6 +1,6 @@
 const goku = document.querySelector('.goku');
-const nuvemdbz = document.querySelector('.nuvemdbz');
-const gokugt = document.querySelector('.gokugt');
+const nuvem = document.querySelector('.nuvemdbz');
+const gameOverImg = document.querySelector('.gokugt');
 const btnReiniciar = document.querySelector('.btn-reiniciar');
 const gameBoard = document.querySelector('.game-board');
 
@@ -44,17 +44,17 @@ setInterval(() => {
   if (gameOver) return;
 
   const gokuRect = goku.getBoundingClientRect();
-  const nuvemdbzRect = nuvem.getBoundingClientRect();
+  const nuvemRect = nuvem.getBoundingClientRect();
 
-  const margem = 12; // margem de tolerância simétrica (antes estava "comendo" toda a hitbox)
+  const margem = 12; // margem de tolerância simétrica
   const colidiu =
-    gokuRect.right - margem > pipeRect.left + margem &&
-    gokuRect.left + margem < pipeRect.right - margem &&
-    gokuRect.bottom - margem > pipeRect.top + margem;
+    gokuRect.right - margem > nuvemRect.left + margem &&
+    gokuRect.left + margem < nuvemRect.right - margem &&
+    gokuRect.bottom - margem > nuvemRect.top + margem;
 
   if (colidiu) {
     gameOver = true;
-    pipe.style.animationPlayState = 'paused';
+    nuvem.style.animationPlayState = 'paused';
 
     const boardRect = gameBoard.getBoundingClientRect();
     goku.style.display = 'none';
