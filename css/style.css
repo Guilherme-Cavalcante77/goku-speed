@@ -58,7 +58,7 @@ html, body {
     height: 55px;
     object-fit: cover;
     object-position: top;
-    animation: nuvem-animation 2.2s infinite linear;
+    animation: nuvem-animation 1.6s infinite linear;
 }
 
 .goku {
