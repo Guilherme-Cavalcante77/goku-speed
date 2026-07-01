@@ -7,7 +7,6 @@ const gameBoard = document.querySelector('.game-board');
 let pulando = false;
 let gameOver = false;
 
-// --- PULO ---
 function pular() {
   if (pulando || gameOver) return;
   pulando = true;
@@ -18,7 +17,7 @@ function pular() {
   }, 500);
 }
 
-// --- TECLADO (PC) ---
+// Teclado (PC)
 document.addEventListener('keydown', (e) => {
   if (e.code === 'Space' || e.code === 'ArrowUp') {
     e.preventDefault();
@@ -26,24 +25,18 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-// --- TOQUE (CELULAR / SAFARI) ---
-// Adiciona nos dois: gameBoard e document, para garantir no Safari
-gameBoard.addEventListener('touchstart', (e) => {
+// Safari/iPhone — usa touchend que é mais confiável no Safari
+document.addEventListener('touchend', (e) => {
   e.preventDefault();
   pular();
 }, { passive: false });
 
-document.addEventListener('touchstart', (e) => {
-  e.preventDefault();
-  pular();
-}, { passive: false });
-
-// --- CLIQUE (PC e fallback) ---
-gameBoard.addEventListener('click', () => {
+// Fallback clique
+document.addEventListener('click', () => {
   pular();
 });
 
-// --- DETECÇÃO DE COLISÃO ---
+// Colisão
 setInterval(() => {
   if (gameOver) return;
 
@@ -61,13 +54,10 @@ setInterval(() => {
     pipe.style.animationPlayState = 'paused';
 
     const boardRect = gameBoard.getBoundingClientRect();
-    const leftPos = gokuRect.left - boardRect.left;
-    const bottomPos = boardRect.bottom - gokuRect.bottom;
-
     goku.style.display = 'none';
     gameOverImg.style.display = 'block';
-    gameOverImg.style.left = leftPos + 'px';
-    gameOverImg.style.bottom = bottomPos + 'px';
+    gameOverImg.style.left = (gokuRect.left - boardRect.left) + 'px';
+    gameOverImg.style.bottom = (boardRect.bottom - gokuRect.bottom) + 'px';
     gameOverImg.style.transform = 'none';
     gameOverImg.style.top = 'auto';
     btnReiniciar.style.display = 'block';
