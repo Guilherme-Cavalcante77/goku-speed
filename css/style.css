@@ -20,6 +20,10 @@ html, body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    /* Evita que o Safari bloqueie eventos de toque */
+    touch-action: none;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 .logo-dbz {
@@ -27,8 +31,8 @@ html, body {
     top: 10px;
     left: 50%;
     transform: translateX(-50%);
-    width: 80%;
-    max-width: 350px;
+    width: 60%;
+    max-width: 220px;
     z-index: 10;
 }
 
