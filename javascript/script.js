@@ -25,14 +25,17 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-// Safari/iPhone — usa touchend que é mais confiável no Safari
-document.addEventListener('touchend', (e) => {
+// Toque (celular) — escuta direto no game-board, com touchstart
+// (dispara assim que o dedo encosta, sem depender de "soltar" o toque)
+gameBoard.addEventListener('touchstart', (e) => {
+  if (e.target.closest('.btn-reiniciar')) return; // não pula ao tocar em reiniciar
   e.preventDefault();
   pular();
 }, { passive: false });
 
-// Fallback clique
-document.addEventListener('click', () => {
+// Clique (PC e fallback mobile)
+gameBoard.addEventListener('click', (e) => {
+  if (e.target.closest('.btn-reiniciar')) return;
   pular();
 });
 
@@ -43,11 +46,11 @@ setInterval(() => {
   const gokuRect = goku.getBoundingClientRect();
   const pipeRect = pipe.getBoundingClientRect();
 
-  const margem = 30;
+  const margem = 12; // margem de tolerância simétrica (antes estava "comendo" toda a hitbox)
   const colidiu =
-    gokuRect.right - margem > pipeRect.left &&
-    gokuRect.left + margem < pipeRect.right &&
-    gokuRect.bottom - margem > pipeRect.top;
+    gokuRect.right - margem > pipeRect.left + margem &&
+    gokuRect.left + margem < pipeRect.right - margem &&
+    gokuRect.bottom - margem > pipeRect.top + margem;
 
   if (colidiu) {
     gameOver = true;
