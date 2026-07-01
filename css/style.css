@@ -26,16 +26,6 @@ html, body {
     user-select: none;
 }
 
-/* As imagens não recebem o toque diretamente: o toque "atravessa"
-   e cai no .game-board. Isso evita o gesto de "salvar imagem" do
-   iOS quando você toca em cima do goku/nuvem/etc. */
-.game-board img {
-    -webkit-user-drag: none;
-    -webkit-touch-callout: none;
-    user-select: none;
-    pointer-events: none;
-}
-
 .logo-dbz {
     position: absolute;
     top: 10px;
@@ -86,7 +76,6 @@ html, body {
     letter-spacing: 1px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     z-index: 10;
-    pointer-events: auto; /* precisa continuar clicável */
 }
 
 .btn-reiniciar:hover {
