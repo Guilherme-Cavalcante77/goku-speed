@@ -1,7 +1,7 @@
 html, body {
     height: 100%;
     margin: 0;
-    overflow: hidden; /* impede a página de rolar (era a causa do "precisa deslizar pra baixo") */
+    overflow: hidden; /* impede a página de rolar */
     overscroll-behavior: none;
 }
 
@@ -14,19 +14,21 @@ html, body {
 .game-board {
     width: 100%;
     height: 100vh; /* fallback para navegadores antigos */
-    height: 100dvh; /* altura real da tela no mobile, descontando a barra de endereço do Safari */
+    height: 100dvh; /* altura real da tela no mobile, descontando a barra do Safari */
     border: 1px solid #333;
     margin: 0 auto;
     position: relative;
     overflow: hidden;
     background-image: url('../images/serpente.png');
     background-size: cover;
-    background-position: bottom center; /* ancora o chão embaixo e corta o excesso de céu do topo */
+    background-position: bottom center; /* ancora o chão embaixo */
     background-repeat: no-repeat;
-    /* Evita que o Safari bloqueie eventos de toque */
+    /* Evita que o navegador mobile capture os gestos de toque
+       (scroll, zoom, "puxar pra atualizar") no lugar do jogo */
     touch-action: none;
     -webkit-user-select: none;
     user-select: none;
+    -webkit-tap-highlight-color: transparent; /* remove o flash cinza ao tocar no iOS/Android */
 }
 
 /* As imagens não recebem o toque diretamente: o toque "atravessa"
@@ -56,7 +58,7 @@ html, body {
     height: 55px;
     object-fit: cover;
     object-position: top;
-    animation: pipe-animation 1.0s infinite linear;
+    animation: nuvem-animation 1.0s infinite linear;
 }
 
 .goku {
@@ -95,6 +97,7 @@ html, body {
     box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     z-index: 10;
     pointer-events: auto; /* precisa continuar clicável */
+    -webkit-tap-highlight-color: transparent;
 }
 
 .btn-reiniciar:hover {
@@ -105,7 +108,7 @@ html, body {
     animation: jump 500ms ease-in-out;
 }
 
-@keyframes pipe-animation {
+@keyframes nuvem-animation {
     from { right: -45px; }
     to   { right: 100%; }
 }
