@@ -22,6 +22,16 @@ html, body {
     background-repeat: no-repeat;
 }
 
+.logo-dbz {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    max-width: 350px;
+    z-index: 10;
+}
+
 .nuvemdbz {
     position: absolute;
     bottom: 0;
@@ -33,7 +43,7 @@ html, body {
 }
 
 .goku {
-    width: 100px; /* um pouco menor */
+    width: 100px;
     position: absolute;
     bottom: 0;
     left: 50px;
@@ -51,7 +61,7 @@ html, body {
     bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: #c9a0dc;
+    background-color: #f5a623;
     color: #fff;
     border: none;
     border-radius: 12px;
@@ -61,10 +71,11 @@ html, body {
     cursor: pointer;
     letter-spacing: 1px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    z-index: 10;
 }
 
 .btn-reiniciar:hover {
-    background-color: #b57bee;
+    background-color: #e6951a;
 }
 
 .jump {
